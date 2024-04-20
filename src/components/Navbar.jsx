@@ -1,15 +1,33 @@
+// import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavbarLink from "./NavbarLink";
+// import { GlobalContect } from "../context/useGlobalContext";
+
 function Navbar() {
+    
+
+  
   return (
     <div className="bg-base-300 ">
       <div className="navbar aligin-container ">
         <div className="navbar-start">
-          <Link className="btn btn-primary lg:btn-lg" to="/">
+          <Link className="btn btn-primary hidden lg:flex lg:btn-lg" to="/">
             My Kitchen
           </Link>
           <div className="dropdown lg:hidden">
-            <button>MyK</button>
+            <button
+              tabIndex={0}
+              role="button"
+              className="btn btn-primary lg:btn-lg  m-1 mb-3"
+            >
+              MyK
+            </button>
+            <div
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-3"
+            >
+              <NavbarLink />
+            </div>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">

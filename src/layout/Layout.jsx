@@ -1,11 +1,12 @@
 import { Outlet} from "react-router-dom"
 import Navbar from "../components/Navbar"
+import ThimsContainer from "../components/pages/ThimsContainer";
 function Layout() {
   return (
     <>
-    
       <Navbar />
-      <main>
+      <ThimsContainer/>
+      <main className="aligin-container ">
         <Outlet />
       </main>
     </>

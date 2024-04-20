@@ -5,9 +5,12 @@ import Layout from "./layout/Layout";
 import Home from "./components/pages/Home";
 import Signin from "./components/pages/Signin";
 import Signup from "./components/pages/Signup";
+import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
 
 // components
 import ProtecdRouter from "./components/ProtecdRouter";
+
 
 function App() {
  const routes = createBrowserRouter([
@@ -22,6 +25,14 @@ function App() {
        {
          index: true,
          element: <Home />,
+       },
+       {
+         path: "/about",
+         element: <About />,
+       },
+       {
+         path: "/contact",
+         element: <Contact />,
        },
      ],
    },

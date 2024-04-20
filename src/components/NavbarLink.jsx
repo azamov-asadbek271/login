@@ -22,8 +22,15 @@ function NavbarLink() {
     <div>
    {links.map((link) =>{
    return (
-   <Link key={link.id} to={link.link} className="px-4 py-2 hover:bg-base-content hover:text-white rounded"> {link.text}</Link>
-   )
+     <Link
+       key={link.id}
+       to={link.link}
+       className="px-4 py-2   hover:bg-base-content hover:text-white rounded lg:inline flex"
+     >
+      
+       {link.text}
+     </Link>
+   );
    })}
     </div>
   )
