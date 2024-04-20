@@ -1,15 +1,15 @@
-// import { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NavbarLink from "./NavbarLink";
-// import { GlobalContect } from "../context/useGlobalContext";
+import { GlobalContect } from "../context/useGlobalContext";
 
 function Navbar() {
     
-
+ const { navbarColor } = useContext(GlobalContect);
   
   return (
-    <div className="bg-base-300 ">
-      <div className="navbar aligin-container ">
+    <div className="bg-base-300 " style={{ backgroundColor: navbarColor }}>
+      <div className="navbar aligin-container items-center">
         <div className="navbar-start">
           <Link className="btn btn-primary hidden lg:flex lg:btn-lg" to="/">
             My Kitchen

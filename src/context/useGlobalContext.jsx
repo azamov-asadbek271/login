@@ -4,7 +4,7 @@ export const GlobalContect = createContext()
 
 const changeState = (state,action) => {
    switch(action.type) {
-      case "CHANGE_COLOR":
+      case "CHANGE_NAVBAR_BG":
         return {...state, navbarColor: action.payload}
         case "CHANGE_USER": 
         return{...state, user: action.payload}
@@ -15,7 +15,7 @@ const changeState = (state,action) => {
 export function GlobalContextProdive ({children}) {
     const [state, dispatch] = useReducer(changeState , {
       user: null,
-      navbarColor: "red",
+      navbarColor: "",
     });
   
 
