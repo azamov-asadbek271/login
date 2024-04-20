@@ -1,5 +1,6 @@
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Layout from "./layout/Layout";
+import { Navigate } from "react-router-dom";
 
 // Page
 import Home from "./components/pages/Home";
@@ -11,13 +12,16 @@ import Contact from "./components/pages/Contact";
 // components
 import ProtecdRouter from "./components/ProtecdRouter";
 
+import { useContext } from "react";
+import { GlobalContect } from "./context/useGlobalContext";
 
 function App() {
+  const {user} = useContext(GlobalContect)
  const routes = createBrowserRouter([
    {
      path: "/",
      element: (
-       <ProtecdRouter user={true}>
+       <ProtecdRouter user={user}>
          <Layout />
        </ProtecdRouter>
      ),
@@ -38,11 +42,11 @@ function App() {
    },
    {
      path: "/signin",
-     element: <Signin />,
+     element: user ? <Navigate to="/" /> : <Signin />,
    },
    {
      path: "/signup",
-     element: <Signup />,
+     element: user ? <Navigate to="/" /> : <Signup />,
    },
  ]);
   return (<RouterProvider router={routes}/>);
