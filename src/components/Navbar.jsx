@@ -7,7 +7,7 @@ import { auth } from "../firebase/firebaseConfig";
 
 function Navbar() {
     
- const { navbarColor } = useContext(GlobalContect);
+ const { navbarColor,user } = useContext(GlobalContect);
    function outLogin () {
     signOut(auth)
     .then(() => {
@@ -15,7 +15,10 @@ function Navbar() {
     }).catch((error) => {console.log(error)})
    }
   return (
-    <div className="bg-base-300 duration-300 transition" style={{ backgroundColor: navbarColor }}>
+    <div
+      className="bg-base-300 duration-300 transition"
+      style={{ backgroundColor: navbarColor }}
+    >
       <div className="navbar aligin-container items-center">
         <div className="navbar-start">
           <Link className="btn btn-primary hidden lg:flex lg:btn-lg" to="/">
@@ -41,6 +44,7 @@ function Navbar() {
           <NavbarLink />
         </div>
         <div className="navbar-end">
+          {user && <p className="mr-3">{user.displayName}</p>}
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -48,7 +52,7 @@ function Navbar() {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src="" />
+                <img alt={`${user.displayName ?? "user"}"image"`} src={user.photoURL} />
               </div>
             </div>
             <ul
@@ -56,7 +60,9 @@ function Navbar() {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <button  onClick={outLogin} className="btn btn-sm">Logout</button>
+                <button onClick={outLogin} className="btn btn-sm">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
