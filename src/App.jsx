@@ -1,6 +1,7 @@
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Layout from "./layout/Layout";
 import { Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 
 // Page
 import Home from "./components/pages/Home";
@@ -11,12 +12,14 @@ import Contact from "./components/pages/Contact";
 
 // components
 import ProtecdRouter from "./components/ProtecdRouter";
-
 import { useContext } from "react";
 import { GlobalContect } from "./context/useGlobalContext";
+import { useEffect } from "react";
+import { auth } from "./firebase/firebaseConfig";
+
 
 function App() {
-  const {user} = useContext(GlobalContect)
+  const { user, dispatch, authChange } = useContext(GlobalContect);
  const routes = createBrowserRouter([
    {
      path: "/",
@@ -49,7 +52,20 @@ function App() {
      element: user ? <Navigate to="/" /> : <Signup />,
    },
  ]);
-  return (<RouterProvider router={routes}/>);
+ useEffect(() => {
+  onAuthStateChanged(auth, (user) => {
+  dispatch({
+    type: "SIGN_IN",
+    payload: user
+  });
+  dispatch({
+    type: "AUTH_CHANGE",
+  });
+  
+  });
+ }, []);
+  return <>{authChange && <RouterProvider router={routes} />}</>;
 }
+
 
 export default App
