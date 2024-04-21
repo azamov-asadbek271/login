@@ -1,8 +1,17 @@
 
-function FormInput() {
+function FormInput({label,type}) {
   return (
-    <div>FormInput</div>
-  )
+    <label className="form-control w-full mb-3">
+      <div className="label">
+        <span className="label-text">{label}</span>
+      </div>
+      <input
+        type={type}
+        placeholder="Type here"
+        className="input input-bordered w-full"/>
+     
+    </label>
+  );
 }
 
 export default FormInput

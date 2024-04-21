@@ -17,8 +17,7 @@ function Navbar() {
   return (
     <div
       className="bg-base-300 duration-300 transition"
-      style={{ backgroundColor: navbarColor }}
-    >
+       style={{ backgroundColor: navbarColor }}>
       <div className="navbar aligin-container items-center">
         <div className="navbar-start">
           <Link className="btn btn-primary hidden lg:flex lg:btn-lg" to="/">
