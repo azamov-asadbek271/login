@@ -16,6 +16,8 @@ import { useContext } from "react";
 import { GlobalContect } from "./context/useGlobalContext";
 import { useEffect } from "react";
 import { auth } from "./firebase/firebaseConfig";
+import { action as useSignubForm } from "./components/pages/Signup";
+import { action as useSigninForm } from "./components/pages/Signin";
 
 
 function App() {
@@ -46,10 +48,12 @@ function App() {
    {
      path: "/signin",
      element: user ? <Navigate to="/" /> : <Signin />,
+     action: useSigninForm,
    },
    {
      path: "/signup",
      element: user ? <Navigate to="/" /> : <Signup />,
+     action: useSignubForm,
    },
  ]);
  useEffect(() => {

@@ -1,4 +1,8 @@
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/firebaseConfig";
 import { useContext } from "react";
@@ -24,8 +28,24 @@ function useSignup() {
           const email = error.customData.email;
           setError(errorMessage);
         });
+
     };
-  return { singupWithGoggle, user, error };
+     const userPassword = (email, password) => {
+       createUserWithEmailAndPassword(auth, email, password)
+         .then((userCredential) => {
+           const user = userCredential.user;
+            dispatch({
+              type: "SIGN_IN",
+              payload: user,
+            });
+         })
+         .catch((error) => {
+           const errorCode = error.code;
+           const errorMessage = error.message;
+           setError(errorMessage);
+         });
+     };
+  return { singupWithGoggle,userPassword, user, error };
 }
 
 export  {useSignup};
