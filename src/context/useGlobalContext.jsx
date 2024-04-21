@@ -15,10 +15,10 @@ const changeState = (state,action) => {
    }
 }
 export function GlobalContextProdive ({children}) {
-    const [state, dispatch] = useReducer(changeState , {
+    const [state, dispatch] = useReducer(changeState, {
       user: null,
-      navbarColor: "",
-      authChange:false,
+      navbarColor: "bg-base-300",
+      authChange: false,
     });
   
 

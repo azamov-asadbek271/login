@@ -2,8 +2,7 @@ import { useSignup } from "../hooks/useSignup";
 import { ImGoogle } from "react-icons/im";
 
 function Signup() {
-  const { singupWithGoggle, user, error } = useSignup();
-  console.log(user)
+  const { singupWithGoggle } = useSignup();
   return (
     <div className="min-h-screen grid place-items-center">
       <button onClick={singupWithGoggle} className="btn btn-secondary">

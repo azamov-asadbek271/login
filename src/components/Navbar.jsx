@@ -44,7 +44,7 @@ function Navbar() {
           <NavbarLink />
         </div>
         <div className="navbar-end">
-          {user && <p className="mr-3">{user.displayName}</p>}
+          {user && <p className="mr-3 hidden lg:flex">{user.displayName}</p>}
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
