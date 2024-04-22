@@ -21,11 +21,28 @@ function SingleRecipies() {
     const data = useLoaderData()
     
   return (
-    <div>SingleRecipies
-        <h2>{data.methods}</h2>
-         <img src={data.image} alt="" />
+    <div>
+      {data && (
+        <div>
+          <div className="card lg:card-side bg-base-100 shadow-xl">
+            <figure>
+              <img
+                src={data.image}
+                alt="Album"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{data.title}</h2>
+              <p>{data.method}</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Listen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default SingleRecipies

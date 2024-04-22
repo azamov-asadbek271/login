@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Form, useActionData } from "react-router-dom";
+import { Form, useActionData,useNavigate } from "react-router-dom";
 import FormInput from "../FormInput";
+import { useCreateRecipieAdd } from "../hooks/useCreateRecipieAdd";
 
 
 // action
@@ -15,6 +16,8 @@ export const action = async ({request}) => {
 }
 
 function Create() {
+    const naviget = useNavigate()
+    const {data,addNewDoc} = useCreateRecipieAdd()
     const createData = useActionData()
     const [ingredients,setIngredients] = useState([])
     const [ingredient,setIngredient] = useState("")
@@ -29,19 +32,21 @@ function Create() {
       setIngredient("")
     }
     useEffect(() => {
-       if(createData) {
+       if(createData && !data) {
          const newCreateData = {
            ...createData,
            ingredients,
          };
-        console.log(newCreateData);
-
+         addNewDoc(newCreateData)
        }
-    },[createData])
+       if(data) {
+        naviget("/")
+       }
+    },[createData,data])
 
   return (
     <div className=" grid place-items-center">
-      <div className="max-w-96 w-full">
+      <div className="max-w-96 w-full"> 
         <h1 className="text-3xl text-center font-bold">Create New Recipie</h1>
         <Form method="post">
           <FormInput type="text" label="Title:" name="title" />
@@ -68,7 +73,11 @@ function Create() {
               </button>
             </div>
             <p className="-mt-2 mb-3">
-              Ingredients: <span>Tuz,Gosht</span>
+              Ingredients: {ingredients.map((ing) => {
+                return (
+                    <span key={ing}> {ing},</span>
+                )
+              })}
             </p>
           </div>
           <FormInput type="number" label="Cooking Time:" name="cookingTime" />
