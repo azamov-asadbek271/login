@@ -17,7 +17,8 @@ function Navbar() {
   return (
     <div
       className="bg-base-300 duration-300 transition"
-       style={{ backgroundColor: navbarColor }}>
+      style={{ backgroundColor: navbarColor }}
+    >
       <div className="navbar aligin-container items-center">
         <div className="navbar-start">
           <Link className="btn btn-primary hidden lg:flex lg:btn-lg" to="/">
@@ -51,7 +52,10 @@ function Navbar() {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt={`${user.displayName ?? "user"}"image"`} src={user.photoURL} />
+                <img
+                  alt={`${user.displayName ?? "user"}"image"`}
+                  src={user.photoURL}
+                />
               </div>
             </div>
             <ul
@@ -63,6 +67,7 @@ function Navbar() {
                   Logout
                 </button>
               </li>
+              
             </ul>
           </div>
         </div>

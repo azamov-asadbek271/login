@@ -10,8 +10,10 @@ export const action = async ({request}) => {
   let  name = formData.get("Name")
   let  email = formData.get("Email")
   let password = formData.get("Password");
+  let photo = formData.get("Photo");
+
   
-  return {name,email,password}
+  return {name,email,password,photo}
 }
 
 function Signup() {
@@ -20,15 +22,15 @@ function Signup() {
 
   useEffect(() => {
    if(porject) {
-    userPassword(porject.email, porject.password);
+    userPassword(porject.email, porject.password,porject.name,porject.photo);
    }
   },[porject])
   return (
     <div className="min-h-screen grid place-items-center">
       <div className="max-w-96 w-full">
         <Form method="post">
-          
           <FormInput type="text" label=" Name:" name="Name" />
+          <FormInput type="url" label=" URl:" name="Photo" />
           <FormInput type="email" label=" Email:" name="Email" />
           <FormInput type="password" label=" Password:" name="Password" />
           <div>

@@ -2,6 +2,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/firebaseConfig";
@@ -30,14 +31,18 @@ function useSignup() {
         });
 
     };
-     const userPassword = (email, password) => {
+     const userPassword = (email, password, name, photo) => {
        createUserWithEmailAndPassword(auth, email, password)
-         .then((userCredential) => {
+         .then(async (userCredential) => {
+           await updateProfile(auth.currentUser, {
+             displayName: name,
+             photoURL: photo,
+           });
            const user = userCredential.user;
-            dispatch({
-              type: "SIGN_IN",
-              payload: user,
-            });
+           dispatch({
+             type: "SIGN_IN",
+             payload: user,
+           });
          })
          .catch((error) => {
            const errorCode = error.code;

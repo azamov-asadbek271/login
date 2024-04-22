@@ -16,8 +16,14 @@ import { useContext } from "react";
 import { GlobalContect } from "./context/useGlobalContext";
 import { useEffect } from "react";
 import { auth } from "./firebase/firebaseConfig";
+// action
 import { action as useSignubForm } from "./components/pages/Signup";
 import { action as useSigninForm } from "./components/pages/Signin";
+import { action as useCreateAction } from "./components/pages/Create";
+import Create from "./components/pages/Create";
+import SingleRecipies from "./components/pages/SingleRecipies";
+// loader
+import { loader as singleLoader } from "./components/pages/SingleRecipies";
 
 
 function App() {
@@ -42,6 +48,16 @@ function App() {
        {
          path: "/contact",
          element: <Contact />,
+       },
+       {
+         path: "/create",
+         element: <Create />,
+         action: useCreateAction,
+       },
+       {
+         path: "/singleRecipies/:id",
+         element: <SingleRecipies />,
+         loader: singleLoader,
        },
      ],
    },
