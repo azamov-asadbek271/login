@@ -1,9 +1,8 @@
-import { useCollection } from "../hooks/useCollection"
-import ResipiesList from "../ResipiesList"
+import { useCollection } from "../hooks/useCollection";
+import ResipiesList from "../ResipiesList";
 function Home() {
-  const {data:recipies }= useCollection()
-  
- 
+  const { data: recipies } = useCollection();
+
   return (
     <div className="flex flex-col  items-center">
       <h1 className="mb-8 text-slate-500 text-4xl">All Recipies</h1>
@@ -12,4 +11,4 @@ function Home() {
   );
 }
 
-export default Home
+export default Home;

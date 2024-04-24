@@ -24,21 +24,25 @@ function SingleRecipies() {
     <div>
       {data && (
         <div>
-          <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure>
+          {recipie && (
+            <div>
               <img
-                src={data.image}
-                alt="Album"
+                src={recipie.image}
+                alt=""
+                className="w-full h-96 rounded object-cover mb-5"
               />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{data.title}</h2>
-              <p>{data.method}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Listen</button>
-              </div>
+              <h1 className="mb-5"> Nomi: {recipie.title}</h1>
+              <p className="flex gap-5 mb-5">
+                {" "}
+                Mahsulotlar:
+                {recipie.ingredients.map((item) => {
+                  return <span key={item}>{item}</span>;
+                })}
+              </p>
+              <p className="mb-5"> Vaqt: {recipie.cookingTime}</p>
+              <p>{recipie.method}</p>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>
